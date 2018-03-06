@@ -1,0 +1,327 @@
+* {
+	margin: 0; 
+	padding: 0; 
+    /*font: 12px/150% '微软雅黑'; */
+	/*font-family: "Microsoft YaHei";*/
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+	outline: none; 
+	list-style: none; 
+	text-decoration: none;
+}
+html {
+    min-height: 100%;
+}
+
+/*order_menu*/
+.orderDetail,
+.billLink,
+.orderInfo,
+.discount_part,
+.applyForBill {
+    width: 100%;
+    background: #ffffff;
+    margin: 0 0 0.4rem 0;
+    display: block;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 1px 1px 3px 1px #d9d9d9;
+}
+.detail_part {
+    padding: 10px 15px;
+    /*padding: 0.1rem 0.2rem;*/
+    /*margin: 0 0.8rem;*/
+    /*border-bottom: 1px solid #CCCCCC; */
+    /*border-bottom: 1px solid #D9D9D9;*/
+    line-height: 2.5rem;
+}
+.detail_part h2 {
+    font-size: 1.2rem;
+    line-height: 2.2;
+    /*padding-left: 10px;*/
+}
+/*下分割线*/
+.parting_line {
+    position: relative;
+}
+.parting_line:after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid #D9D9D9;
+    color: #D9D9D9;
+    -webkit-transform-origin: 0 100%;
+    transform-origin: 0 100%;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    left: 15px;
+}
+.detail_price div {
+    line-height: 20px;
+    color: #999999;
+    font-size: 0.7rem;
+}
+.detail_part .menuTable {
+    width: 100%;
+    line-height: 1.5rem;
+}
+.detail_part .menuTable tr td {
+    text-align: right;
+}
+.detail_part .menuTable .tableLabel {
+    text-align: left;
+    margin-right: 1em;
+    min-width: 4em;
+    color: #999999;
+    text-align: justify;
+    font-size: 0.9rem;
+    line-height: 2;
+    /*text-align-last: justify;*/
+}
+.detail_part .menuTable .tableValue {
+    font-size: 1.2em;
+    text-align: right;
+    color: #999999;
+    line-height: 2;
+}
+.detail_part .menuTable .number {
+    font-size: 0.8rem;
+}
+.detail_part .menuTable .price {
+    text-decoration: line-through;
+}
+.detail_part .menuTable .payPrice {
+    color: #495060;
+}
+.detail_part .discount_style {
+    float: right;
+    color: red;
+}
+.detail_part .amount_style {
+    float: right;
+    font-size: 1.6em;
+}
+
+
+/*historical_record*/
+.sortord {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.expenseList {
+    width: 100%;
+    height: 100%;
+    background: #e6e7ec;
+    padding: 10px 10px 0 10px;
+}
+.expenseList .expenseItem {
+    width: 100%;
+    height: 11rem;
+    line-height: 1.5rem;
+    background: #ffffff;
+    /*margin: 0.2rem 0;*/
+    margin-bottom: 8px;
+    border-radius: 3px;
+    border: 1px solid #999;
+    box-shadow: 2px 2px 4px #d6d6db;
+    border-top: 1px solid #dddee1;
+    border-left: 1px solid #dddee1;
+}
+.expenseList .expenseItem .expenseTop {
+    width: 100%;
+    line-height: 26px;
+    border-bottom: 1px solid #D9D9D9;
+    padding: 0 10px;
+}
+.expenseList .expenseItem .expenseTop>:last-child {
+    float: right;
+    padding-right: 5px;
+    color: #ad2b0a;
+}
+.expenseList .expenseItem .expenseBar {
+    width: 100%;
+    border-top: 1px solid #D9D9D9;
+    float: right;
+    padding: 6px 15px;
+    font-size: 0.8rem;
+}
+.expenseList .expenseItem .expenseBar .toOrderInfo,
+.expenseList .expenseItem .expenseBar .toBillInfo {
+    border: 1px solid #D9D9D9;
+    padding: 2px 9px;
+    float: right;
+    margin-left: 10px;
+    background-color: rgba(237, 63, 20, 0.69);
+}
+.expenseList .expenseItem .expenseBar .toOrderInfo a,
+.expenseList .expenseItem .expenseBar .toBillInfo a {
+    /*color: #444;*/
+    color: #fff;
+    /*text-shadow: 0 0 1px rgba(0, 0, 0, 0.7);*/
+}
+.expenseList .expenseItem div {
+    float: left;
+}
+.expenseList .expenseItem .expensePic {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    padding: .7rem 0;
+}
+.expenseList .expenseItem .expenseInfo {
+    width: 65%;
+    padding: .7rem 0;
+}
+.expenseList .expenseItem .expenseInfo div {
+    float: left;
+}
+.expenseList .expenseItem .expenseInfo h3 {
+    font-size: 15px;
+}
+.expenseList .expenseItem .expenseInfo a {
+    color: #495060;
+}
+.expenseList .expenseItem .expenseInfo p {
+    font-size: 13px;
+}
+.expenseList .expenseItem .expenseInfo .expensePaid {
+    font-size: 14px;
+    font-weight: bold;
+    color: #d84646;
+    float: right;
+}
+
+/*下拉刷新加载更多*/
+.loadMore {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background-color: #f3f3f3;
+}
+
+
+/*line_and_menu_number*/
+.pageHeader {
+    margin: 0 auto;
+    padding: 8px 0;
+    background: #EFF0F5;
+    border-bottom: 1px solid #d6d6db;
+    position: relative;
+}
+.pageHeader .pageTab {
+    width: 100%;
+    text-align: center;
+ /*   display: flex;
+    justify-content: space-around;*/
+}
+.pageHeader .pageTab a{
+    text-decoration: none;
+    background-color: inherit;
+    color: #e2273a;
+    border: 1px solid #E2273A;
+    display: inline-block;
+    padding: 8px;
+    width:120px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin:0;
+}
+.pageHeader .pageTab .left{
+    border-radius: 5px 0 0 5px;
+    border-right:none;
+}
+.pageHeader .pageTab .right{
+    border-radius: 0 5px 5px 0;
+    border-left:none;
+    margin-left:-4px;
+}
+.pageHeader .pageTab a.current{
+    background-color: #E2273A;
+    color: #f3f4f9;
+}
+.orderPage,
+.myQueuePage {
+    width: 100%;
+    height: 100%;
+    background: #e6e7ec;
+    padding: 0.5rem 0.4rem;
+}
+.orderPage .orderItem,
+.myQueuePage .queueItem {
+    width: 100%;
+    height: 6rem;
+    line-height: 1.5rem;
+    background: #ffffff;
+    margin: 0.2rem 0;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid #bbbec4;
+    box-shadow: 1px 1px 1px 1px #bbbec4;
+}
+.orderPage .orderItem div,
+.myQueuePage .queueItem div {
+    float: left;
+}
+.orderPage .orderItem .orderNum,
+.myQueuePage .queueItem .queueNum {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    padding: .7rem 0;
+    background: #f3f3f3;
+    height: 100%;
+}
+.orderPage .orderItem .orderInfo,
+.myQueuePage .queueItem .queueInfo {
+    width: 66%;
+    padding: .7rem 0.5rem;
+    height: 100%;
+    margin: 0;
+}
+.orderPage .orderItem .orderInfo .orderInfo_right,
+.myQueuePage .queueItem .queueInfo .queueInfo_right {
+    float: right;
+    margin-left: 2.5rem;
+}
+
+
+/*onlinePay_applyBill_check*/
+.weui-cells_checkbox .weui-check:checked + .vux-checklist-icon-checked:before {
+    color: #d84646 !important;
+}
+
+.weui-cells {
+    margin-top: 0 !important;
+}
+.vux-x-input {
+    /*border: 1px solid #dddee1 !important;*/
+    /*border-radius: 4px !important;*/
+}
+.weui-btn_primary {
+    /*background-color: #d9d9d9 !important;
+    color: #495060 !important;*/
+}
+
+.vux-prompt-msgbox {
+    width: 20% !important;
+}
+/*toast*/
+.weui-toast {
+    width: 7.6rem !important;
+}
+
+/*masker*/
+.vux-masker {
+    /*background-color: rgba(0, 0, 0, 0.18) !important;*/
+}
+
+.weui-search-bar {
+    margin: 8px 10px !important;
+    box-shadow: 1px 2px 4px 1px #999 !important;
+    background-color: #ffffff !important;
+}

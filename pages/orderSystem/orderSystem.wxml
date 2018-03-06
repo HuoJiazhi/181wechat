@@ -1,0 +1,61 @@
+<view id="order_system">
+  <view class="dish_type">
+    <block wx:for="{{list1}}" id="dishmenu" class="dishMenu">
+      <view id="dish_menu_item" class="dishMenu_item" data-type="{{index}}" bindtap="dishScroll">
+        {{item.dish_type_name}}
+        <badge :text="type_num[type]" class="itemBadge" wx:if="{{type_num[type] !== 0}}"></badge>
+      </view>
+    </block>
+  </view>
+  <view class="dish_item">
+    <block wx:for="{{list1}}" wx:for-item="list1">
+      <!-- dishTypeList -->
+      <scroll-view class="typeId">{{list1.dish_type_name}}</scroll-view>
+      <view>
+        <view class="foodTable">
+          <block wx:for="{{list2}}" wx:for-item="list2" class="foodItem" wx:if="{{list1.dish_type_serial == list2.dish_type_id}}">
+            <!-- dishList.foodList -->
+            <view class="tr">
+              <view style="float:left;width:35%;">
+                <!-- <router-link :to="{ path:'/foodInfo', query:{dish_name:foodOne.dish_name, dish_description:foodOne.dish_description, dish_pic:foodOne.dish_pic, dish_price:foodOne.dish_price, dish_pay_price:foodOne.dish_pay_price}}"> -->
+                <image class="foodImg" src="{{list2.dish_pic}}" />
+                <!-- </router-link> -->
+              </view>
+              <view>
+                <view class="dish_name">{{list2.dish_name}}</view>
+                <view class="dish_price">
+                  <font>¥</font>
+                  <font>{{list2.dish_pay_price}}</font>
+                </view>
+              </view>
+              <view class="dish_amount" wx:if="{{preview != 1}}">
+                <view bindtap="minusCountClick(list2,index,type)" hidden="{{!countShow}}" :id="type+'minusCount'+index">
+                  <Icon type="minus-circled" size="20" color="red"></Icon>
+                </view>
+                <view class="number" :value="list2.dish_num">{{foodOne.dish_num}}</view>
+                <view bindtap="plusClick(foodOne,index,type)" :id="type+'plusPre'+index">
+                  <Icon type="plus-circled" size="20" color="blue"></Icon>
+                </view>
+                <view bindtap="plusCountClick(foodOne,index,type)" hidden="{{!countShow}}" :id="type+'plusCount'+index">
+                  <Icon type="plus-circled" size="20" color="red"></Icon>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="buy">
+    <view v-if="preview != 1">
+      <view style="float:left; margin:5px;">
+        <Icon type="ios-cart" size="30" color="#ed3f14"></Icon>
+      </view>
+      <span v-model="allCount" v-show="allCount !== 0">{{allCount}} 份</span>
+      <span v-model="allPrice" v-show="allPrice !== 0" style="padding-left:20px;">{{allPrice}} 元</span>
+      <x-button mini type="warn" bindtap="submit()" style="float:right; height:40px; width:90px; border-radius:0;">选好了</x-button>
+    </view>
+  </view>
+  <!-- <toast v-model="toastShow" type="cancle">请选择菜品</toast>
+  <loading :show="loading" text="loading"></loading> -->
+</view>

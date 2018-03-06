@@ -1,0 +1,132 @@
+<!--pages/shopInfo/shopInfo.wxml-->
+<view id="shop_info">
+  <view class="shop_detail">
+    <view class="shop_queue">
+      <view class="queue_table">
+        <view class="tr bg-w">
+          <view class="th">餐桌类型</view>
+          <view class="th">等待桌数</view>
+        </view>
+        <view class="tr bg-g" wx:if="{{small_thres != -1}}">
+          <view class="td">小桌{{small_thres}}人\n</view>
+          <view class="td">{{small_queue_num}}桌</view>
+        </view>
+        <view class="tr bg-g" wx:if="{{small_thres == -1}}">
+          <view class="td">小桌--人</view>
+          <view class="td">--桌</view>
+        </view>
+        <view class="tr bg-g" wx:if="{{middle_thres != -1}}">
+          <view class="td">中桌{{middle_thres}}人</view>
+          <view class="td">{{middle_queue_num}}桌</view>
+        </view>
+        <view class="tr bg-g" wx:if="{{middle_thres == -1}}">
+          <view class="td">中桌--人</view>
+          <view class="td">--桌</view>
+        </view>
+        <view class="tr bg-g" wx:if="{{big_thres != -1}}">
+          <view class="td">大桌{{big_thres}}人</view>
+          <view class="td">{{big_queue_num}}桌</view>
+        </view>
+        <view class="tr bg-g" wx:if="{{big_thres == -1}}">
+          <view class="td">大桌--人</view>
+          <view class="td">--桌</view>
+        </view>
+      </view>
+      <!-- 当需要排队时，点击领号 -->
+      <view class="queue_state" wx:if="{{ifOpenQueue == '1'}}">
+        <view class="col_xs_offset">
+          <button class="get_number" bindtap="getNumber">立即取号</button>
+        </view>
+        <!-- 浮出窗口填写就餐人数 -->
+        <view v-transfer-dom>
+          <modal hidden="{{!show}}" title="就餐人数" confirm-text="确认" cancel-text="取消" bindcancel="onCancel" bindconfirm="onConfirm" no-cancel="{{nocancel}}">
+            <input type="number" bindinput='watchNumber' />
+          </modal>
+        </view>
+        <!-- 取号成功提示 -->
+        <toast hidden="{{showToast}}" icon="success">领取成功</toast>
+      </view>
+      <!-- 当无需排队时，提示可直接点菜就惨 -->
+      <view class="queue_state" wx:if="{{ifOpenQueue == '2'}}" style="height:60px;">
+        <view style="width:22%; float:left;">
+          <image class="state_icon" src="../../assets/images/icon_wait.png" />
+        </view>
+        <view class="state_info">
+          <text class="info_span">本店现在无需排队\n</text>
+          <text>快带上小伙伴来吧</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="shop_info">
+      <view>
+        <view class="base_info">
+          <text class="shop_name">
+            <span class="master">{{shop_name}}</span>
+            <span class="branch">({{shop_type}})</span>
+          </text>
+          <view style="padding:5px 0 10px 0">
+            <span class="style">{{shop_feature}}</span>
+            <span class="avg_price">¥ {{average_price}}/人</span>
+          </view>
+        </view>
+        <view class="line"></view>
+        <view class="contact_info">
+          <view class="address">
+            <view style="width:5%; float:left;">
+              <image src="../../assets/images/icon_queue_pin.png" class="state_icon_min" />
+            </view>
+            <view>
+              <text>{{shop_address}}{{shop_floor_no}}楼{{shop_room_no}}号</text>
+            </view>
+          </view>
+          <view class="open_time">
+            <view style="width:5%; float:left;">
+              <image class="state_icon_min" src="../../assets/images/queue_detail_clock.png" />
+            </view>
+            <view>营业时间：{{business_hours}}</view>
+          </view>
+          <view class="tel">
+            <button class="tel_btn" bindtap="callClick()">
+              <image class="state_icon" src="../../assets/images/icon_call.png" />
+            </button>
+          </view>
+        </view>
+        <view class="line"></view>
+        <table class="discount_info">
+          <tbody>
+            <tr>
+              <td class="discount_label">优惠信息</td>
+              <td class="discount">
+                <p class="none">{{activity_info}}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </view>
+    </view>
+    <view class="toolbar_wrapper">
+      <view class="toolbar_placeholder"></view>
+      <view class="toolbar">
+        <view class="row">
+          <view class="col_xs_4 menu" style="float:left;">
+            <view data-albumlist="{{shop_account_id}}" data-preview="1" bindtap="openMenu">
+              <view>
+                <image class="state_icon" src="../../assets/images/icon_order.png" />
+              </view>
+              <text>菜单</text>
+            </view>
+          </view>
+          <view class="col_xs_4 scan" style="float:right;" bindtap="scanOrder">
+            <view>
+              <image class="state_icon" src="../../assets/images/scanQRCode.png" />
+            </view>
+            <text>点餐</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <loading hidden="{{loading}}">正在加载</loading>
+  <toast hidden="{{!is_line}}">您已取号</toast>
+</view>
