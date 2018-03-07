@@ -1,19 +1,38 @@
-<import src="../common/orderPage.wxml" />
-<import src="../common/commentPage.wxml" />
-<view class="container" disable-scroll="true">
-  <view class="header">
-    <block wx:for="{{swiperTitle}}" wx:key="">
-      <view class="title {{index==currentPage?'selected':''}}" data-index="{{index}}" bindtap="turnPage">{{item.text}}</view>
+<view disable-scroll="true">
+  <scroll-view class="orderPage-sideBar" style="float:left;" bindscrolltolower="lower" scroll-y="true">
+    <block wx:for="{{menu}}" wx:key="">
+      <view class="menuList">
+        <view class="menu {{index==selected?'selected':''}}" data-index="{{index}}" catchtap="turnMenu">{{item.typeName}}</view>
+      </view>
     </block>
+  </scroll-view>
+  <scroll-view class="foodList" style="float:right;" scroll-y="true">
+    <view class="title">{{menu[selected].typeName}}</view>
+    <block wx:for="{{menu[selected].menuContent}}" wx:key="">
+      <view class="food">
+        <image class="img" src="{{item.src}}"></image>
+        <view class="food-info">
+          <view class="name">{{item.name}}</view>
+          <view class="sales">月售 {{item.sales}} 赞 {{item.rating}}
+          </view>
+          <view class="price">￥ {{item.price}}</view>
+        </view>
+        <view class="food-numb">
+          <view class="remove" bindtap="removeFromTrolley" hidden="{{item.numb==0}}" data-index="{{index}}">-</view>
+          <text class="text" hidden="{{item.numb==0}}">{{item.numb}}</text>
+          <view class="add" bindtap="addToTrolley" data-index="{{index}}">+</view>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  <view class="footer {{cost!=0?'active':''}}">
+    <view class="howMuch">
+      <view class="img" style="background:{{cost!=0?'#E2273A':'#E7E7E7'}};">
+        <image src="../../assets/images/trolley.png" style="width:60rpx;height:60rpx;"></image>
+      </view>
+      <view class="cost" hidden="{{cost==0}}">￥{{cost}}</view>
+      <view class="free">总价</view>
+    </view>
+    <view class="pay">{{cost!=0?'去结算':'15元起送'}}</view>
   </view>
-  <swiper class="swiper" current="{{currentPage}} 
-  bindchange=" turnTitle ">
-    <swiper-item id="orderPage ">
-      <template is="orderPage " data="{{menu,selected,howMuch,cost,pullBar}} "/>
-    </swiper-item>
-    <swiper-item id="commentPage ">
-      <template is="commentPage " data="{{categoryList}} "/>
-    </swiper-item>
-    <swiper-item id="restaurantPage "></swiper-item>
-  </swiper>
 </view>

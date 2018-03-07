@@ -87,7 +87,7 @@
             <view>营业时间：{{business_hours}}</view>
           </view>
           <view class="tel">
-            <button class="tel_btn" bindtap="callClick()">
+            <button class="tel_btn" bindtap="callClick">
               <image class="state_icon" src="../../assets/images/icon_call.png" />
             </button>
           </view>

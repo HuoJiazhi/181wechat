@@ -1,10 +1,12 @@
 // pages/menu/menu.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    preview: '',
     swiperTitle: [{
       text: "点菜",
       id: 1
@@ -16,7 +18,11 @@ Page({
       id: 3
     }],
     menu: [],
-    currentPage: 0,
+    desk_number: '',
+    list1: [],
+    list2: [],
+    shop_account_id: '',
+    currentPage: 1,
     selected: 0,
     howMuch: 12,
     cost: 0,
@@ -68,9 +74,53 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    this.setData({
+      preview: options.preview,
+      shop_account_id: options.shopid,
+    })
     var that = this;
+    // 获得菜品类型列表
     wx.request({
-      url: "https://www.easy-mock.com/mock/596257bc9adc231f357c4664/restaurant/menu",
+      url: "http://www.biu233.com/181mall/get_dish_type_list/" + this.data.shop_account_id,
+      method: "GET",
+      header: {
+        'Cookie': app.globalData.sessionId
+      },
+      success: response => {
+        console.log("获取申请:", response.data);
+        var data = response.data;
+        this.setData({
+          list1: data.list
+        })
+      },
+      fail: function (error) {
+        console.log("获取申请error:", error);
+      }
+    });
+
+
+    // 获得所有菜品条目
+    wx.request({
+      url: "http://www.biu233.com/181mall/select_dish_list?shop_account_id=" + this.data.shop_account_id,
+      method: "GET",
+      header: {
+        'Cookie': app.globalData.sessionId
+      },
+      success: response => {
+        console.log("获取申请:", response.data);
+        var data = response.data;
+        this.setData({
+          list2: data.list,
+          loading: false
+        })
+      },
+      fail: function (error) {
+        console.log("获取申请error:", error);
+      }
+    });
+    wx.request({
+      url: "https://www.easy-mock.com/mock/5a9fb7372111737f5936260a/181wechat/menu",
       method: "GET",
       success: function (res) {
         console.log(res);

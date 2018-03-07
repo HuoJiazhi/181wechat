@@ -1,46 +1,13 @@
-.container {
-  height: 100%;
-}
-
-.header {
-  display: flex;
-  justify-content: space-around;
-}
-
-.header .title {
-  height: 70rpx;
-  width: 180rpx;
-  line-height: 70rpx;
-  font-size: 30rpx;
-  text-align: center;
-}
-
-.header .title.selected {
-  border-bottom: 7rpx solid #ffd161;
-  font-weight: 600;
-}
-
 .swiper {
   height: 1130rpx;
 }
 
-#orderPage {
-  display: flex;
-  height: auto;
-}
-
-#commentPage {
-  height: auto;
-}
-
-#restaurantPage {
-  background: yellow;
-}
-
 .orderPage-sideBar {
-  width: 150rpx;
-  height: 1130rpx;
+  height: 100%;
   background: #f4f4f4;
+  width: 25%;
+  justify-content: center;
+  display: flex;
 }
 
 .menuList {
@@ -66,15 +33,17 @@
   top: 32rpx;
   height: 36rpx;
   width: 7rpx;
-  background: #ffd161;
+  background: #E2273A;
 }
 
 .foodList {
   flex: 1;
-  display: flex;
   flex-direction: column;
   height: 100%;
   background: #ececec;
+  justify-content: center;
+  display: flex;
+  width: 75%;
 }
 
 .foodList .title {
@@ -149,7 +118,7 @@
   font-size: 35rpx;
   line-height: 37rpx;
   font-weight: 700;
-  background: #ffd161;
+  background: red;
   margin-left: 15rpx;
 }
 
@@ -186,7 +155,7 @@
   justify-content: center;
 }
 
-#orderPage .howMuch {
+.howMuch {
   position: relative;
   flex: 1;
   font-size: 28rpx;
@@ -204,7 +173,7 @@
   background: #ccc;
 }
 
-#orderPage .cost {
+.cost {
   margin-top: 10rpx;
   color: red;
   font-size: 50rpx;
@@ -221,76 +190,6 @@
 }
 
 .footer.active .pay {
-  background: #ffd161;
+  background: #E2273A;
   color: black;
-}
-
-.commentPage-header {
-  height: 190rpx;
-  display: flex;
-  padding-bottom: 30rpx;
-  border-bottom: 20rpx solid #f4f4f4;
-}
-
-.commentPage-score {
-  flex: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
-  font-size: 55rpx;
-  color: #ffb001;
-  border-right: 1px solid #e8e8e8;
-}
-
-.commentPage-score .overall {
-  margin-top: 10rpx;
-  font-size: 30rpx;
-  color: #9d9d9d;
-}
-
-.commentPage-score .rate {
-  line-height: 50rpx;
-  font-size: 25rpx;
-  color: #e8e8e8;
-}
-
-.commentPage-rating {
-  padding-top: 20rpx;
-  flex: 6;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 30rpx;
-  color: #9d9d9d;
-}
-
-.commentPage-rating .restaurant, .commentPage-rating .distribute {
-  display: flex;
-  width: 450rpx;
-}
-
-.commentPage-rating .distribute {
-  margin-top: 40rpx;
-}
-
-.commentPage-rating .stars {
-  margin: 0 40rpx;
-}
-
-.commentPage-category {
-  display: flex;
-  flex-wrap: wrap;
-  border-bottom: 20rpx solid #f4f4f4;
-}
-
-.commentPage-category .category-item {
-  height: 40rpx;
-  line-height: 40rpx;
-  margin: 20rpx 10rpx;
-  font-size: 28rpx;
-  color: #9d9d9d;
-  border: 1px solid #ececec;
-  border-radius: 40rpx;
-  padding: 5rpx 15rpx;
 }

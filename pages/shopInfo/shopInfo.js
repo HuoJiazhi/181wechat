@@ -34,7 +34,7 @@ Page({
     is_line: false,
     JSESSIONID: '',
     mealNumber: '',
-    JSESSION:''
+    JSESSION: ''
   },
   /**
    * 生命周期函数--监听页面加载
@@ -44,7 +44,7 @@ Page({
     console.log(options)
     this.setData({
       JSESSION: options.cookie,
-      JSESSIONID: "JSESSIONID="+options.cookie
+      JSESSIONID: "JSESSIONID=" + options.cookie
     })
   },
 
@@ -52,7 +52,7 @@ Page({
   onReady: function (options) {
     console.log(this.data.JSESSIONID);
     this.setData({
-      shop_account_id:"1712267403"
+      shop_account_id: "1712267403"
     });
     // 获取店家详细信息
     wx.request({
@@ -285,19 +285,28 @@ Page({
   },
   // 拨打店家电话
   callClick: function () {
-    if (this.shop_tel !== '') {
-      window.location.href = "tel://" + this.shop_tel;
+    if (this.data.shop_tel !== '') {
+      var phone = this.data.shop_tel;
+      wx.makePhoneCall({
+        phoneNumber: phone, //此号码并非真实电话号码，仅用于测试  
+        success: function () {
+          console.log("拨打电话成功！")
+        },
+        fail: function () {
+          console.log("拨打电话失败！")
+        }
+      })
     }
   },
 
   //打开菜单
-  openMenu: function (event){
+  openMenu: function (event) {
     var shopid = event.currentTarget.dataset.albumlist
     var preview = event.currentTarget.dataset.preview
     console.log(shopid);
     console.log(preview);
     wx.navigateTo({
-      url: '../orderSystem/orderSystem?shopid=' + shopid + '&preview=' + preview
+      url: '../menu/menu?shopid=' + shopid + '&preview=' + preview
     })
   },
 
@@ -341,11 +350,11 @@ Page({
     //     }
     //   }
     // });
-    setTimeout(() => {
-      wx.navigateTo({
-        // url: '../shopInfo/shopInfo'
-        url: '../menu/menu'
-      })
-    }, 2000)
+    var shopId = this.data.shop_account_id;
+    console.log(shopId);
+    wx.navigateTo({
+      // url: '../shopInfo/shopInfo'
+      url: '../menu/menu?shopid=' + shopId + '&preview=' + 0
+    })
   }
 })
