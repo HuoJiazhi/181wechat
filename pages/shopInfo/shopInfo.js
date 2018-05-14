@@ -8,7 +8,7 @@ Page({
    */
   data: {
     shopInfo: {},
-    shop_account_id: '1712267403',
+    shop_account_id: '1712266646',
     show: false,
     showToast: true,
     small_thres: '-1',
@@ -52,11 +52,11 @@ Page({
   onReady: function (options) {
     console.log(this.data.JSESSIONID);
     this.setData({
-      shop_account_id: "1712267403"
+      shop_account_id: "1712266646"
     });
     // 获取店家详细信息
     wx.request({
-      url: "http://www.biu233.com/181mall/shop/info?shop_account_id=1712267403",
+      url: "http://42.121.193.25:8888/181mall/shop/info?shop_account_id=1712266646",
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
@@ -91,7 +91,7 @@ Page({
     });
     //获取店家是否开启排队
     wx.request({
-      url: "http://www.biu233.com/181mall/queue/is_open/1712267403",
+      url: "http://42.121.193.25:8888/181mall/queue/is_open/1712266646",
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
@@ -125,7 +125,7 @@ Page({
   getQueueInfo: function () {
     // 获取每个桌型规定人数
     wx.request({
-      url: "http://www.biu233.com/181mall/queue/get_queue_thres/1712267403",
+      url: "http://42.121.193.25:8888/181mall/queue/get_queue_thres/1712266646",
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
@@ -145,7 +145,7 @@ Page({
     });
     // 获取等待排队桌数信息
     wx.request({
-      url: "http://www.biu233.com/181mall/queue/queue_num/1712267403",
+      url: "http://42.121.193.25:8888/181mall/queue/queue_num/1712266646",
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
@@ -170,7 +170,7 @@ Page({
 
   getNumber: function () {
     wx.request({
-      url: "http://www.biu233.com/181mall/queue/list",
+      url: "http://42.121.193.25:8888/181mall/queue/list",
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
@@ -244,7 +244,7 @@ Page({
         return
       }
       wx.request({
-        url: "http://www.biu233.com/181mall/queue/get_queue_num/1712267403?queue_type=1",
+        url: "http://42.121.193.25:8888/181mall/queue/get_queue_num/1712266646?queue_type=1",
         method: "GET",
         header: {
           'Cookie': app.globalData.sessionId
@@ -316,7 +316,7 @@ Page({
     // // var signature_url = domain + '/shopInfo?shop_account_id=' + this.shop_account_id;
     // // var signature_url = document.location.href.replace(document.location.hash,'')
     // wx.request({
-    //   url: "http://www.biu233.com/181mall/wxpay/jssdkparam?signature_url=" + signature_url,
+    //   url: "http://42.121.193.25:8888/181mall/wxpay/jssdkparam?signature_url=" + signature_url,
     //   method: "GET",
     //   success: response => {
     //     // console.log("获取申请:", res.data)

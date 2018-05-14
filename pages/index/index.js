@@ -12,7 +12,7 @@ Page({
   //事件处理函数
   bindViewTap: function() {
     wx.request({
-      url: "http://www.biu233.com/181mall/registerlogin",
+      url: "http://42.121.193.25:8888/181mall/registerlogin",
       method: "POST",
       header: {
         "content-type": "application/x-www-form-urlencoded"

@@ -61,10 +61,10 @@
     <view class="shop_info">
       <view>
         <view class="base_info">
-          <text class="shop_name">
+          <view style="shop_name">
             <span class="master">{{shop_name}}</span>
             <span class="branch">({{shop_type}})</span>
-          </text>
+          </view>
           <view style="padding:5px 0 10px 0">
             <span class="style">{{shop_feature}}</span>
             <span class="avg_price">¥ {{average_price}}/人</span>

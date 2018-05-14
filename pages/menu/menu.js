@@ -82,7 +82,7 @@ Page({
     var that = this;
     // 获得菜品类型列表
     wx.request({
-      url: "http://www.biu233.com/181mall/get_dish_type_list/" + this.data.shop_account_id,
+      url: "http://42.121.193.25:8888/181mall/get_dish_type_list/" + this.data.shop_account_id,
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
@@ -102,7 +102,7 @@ Page({
 
     // 获得所有菜品条目
     wx.request({
-      url: "http://www.biu233.com/181mall/select_dish_list?shop_account_id=" + this.data.shop_account_id,
+      url: "http://42.121.193.25:8888/181mall/select_dish_list?shop_account_id=" + this.data.shop_account_id,
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId

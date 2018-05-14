@@ -29,7 +29,7 @@ Page({
       JSESSIONID: "JSESSIONID=" + options.cookie
     })
     wx.request({
-      url: "http://www.biu233.com/181mall/queue/list",
+      url: "http://42.121.193.25:8888/181mall//queue/list",
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
@@ -78,7 +78,7 @@ Page({
     formData.append("shop_account_list", arr)
     console.log(formData);
     wx.request({
-      url: "http://www.biu233.com/181mall/logo/list",
+      url: "http://42.121.193.25:8888/181mall//logo/list",
       method: "POST",
       header: {
         'Cookie': app.globalData.sessionId,
@@ -105,7 +105,7 @@ Page({
     var shop_account_id = this.data.myQueueList[index].shop_account_id;
     var Queue_no = this.data.myQueueList[index].queue_no;
     wx.request({
-      url: 'http://www.biu233.com/181mall/queue/no_status?shop_account_id=' + shop_account_id + '&queue_no=' + Queue_no,
+      url: 'http://42.121.193.25:8888/181mall//queue/no_status?shop_account_id=' + shop_account_id + '&queue_no=' + Queue_no,
       method: "GET",
       header: {
         'Cookie': app.globalData.sessionId
