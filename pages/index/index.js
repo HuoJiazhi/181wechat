@@ -36,6 +36,33 @@ Page({
       }
     });
   },
+  //事件处理函数
+  bindViewTap2: function () {
+    wx.request({
+      url: "http://42.121.193.25:8888/181mall/registerlogin",
+      method: "POST",
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        "phone": "13541098917",
+        "msg_identification_code": "1234",
+        "role": "1"
+      },
+      success: response => {
+        console.log("登录成功:", response.header["Set-Cookie"].split(";")[0].split("=")[1]);
+        var JSESSIONID = response.header["Set-Cookie"].split(";")[0].split("=")[1];
+        //设置全局sessionId 变量
+        app.globalData.sessionId = "JSESSIONID=" + JSESSIONID;
+        wx.navigateTo({
+          url: '../shopKeeper/shopKeeper?cookie=' + JSESSIONID
+        })
+      },
+      fail: function (error) {
+        console.log("登录error:", error);
+      }
+    });
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

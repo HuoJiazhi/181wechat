@@ -5,7 +5,8 @@
     "pages/shopInfo/shopInfo",
     "pages/lineNumList/lineNumList",
     "pages/orderSystem/orderSystem",
-    "pages/menu/menu"
+    "pages/menu/menu",
+    "pages/shopKeeper/shopKeeper"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,62 @@
+<!--pages/shopKeeper/shopKeeper.wxml-->
+<view id="shop_info">
+  <view class="shop_detail">
+    <view class="shop_queue">
+      <view class="queue_table">
+        <view class="tr bg-w">
+          <view class="th">餐桌类型</view>
+          <view class="th">等待桌数</view>
+          <view class="th">管理</view>
+        </view>
+        <view class="tr bg-g" wx:if="{{small_thres != -1}}">
+          <view class="td">小桌{{queue[0].thres}}人\n</view>
+          <view class="td">{{queue[0].num}}桌</view>
+          <view class="td">
+            <image class="state_icon" id="1" bindtap="reduce" src="../../assets/images/接客.png" />
+          </view>
+        </view>
+        <view class="tr bg-g" wx:if="{{small_thres == -1}}">
+          <view class="td">小桌--人</view>
+          <view class="td">--桌</view>
+          <view class="td">
+            <image class="state_icon" id="1" bindtap="reduce" src="../../assets/images/接客.png" />
+          </view>
+        </view>
+        <view class="tr bg-g" wx:if="{{middle_thres != -1}}">
+          <view class="td">中桌{{queue[1].thres}}人</view>
+          <view class="td">{{queue[1].num}}桌</view>
+          <view class="td">
+            <image class="state_icon" id="2" bindtap="reduce" src="../../assets/images/接客.png" />
+          </view>
+        </view>
+        <view class="tr bg-g" wx:if="{{middle_thres == -1}}">
+          <view class="td">中桌--人</view>
+          <view class="td">--桌</view>
+          <view class="td">
+            <image class="state_icon" id="2" bindtap="reduce" src="../../assets/images/接客.png" />
+          </view>
+        </view>
+        <view class="tr bg-g" wx:if="{{big_thres != -1}}">
+          <view class="td">大桌{{queue[2].thres}}人</view>
+          <view class="td">{{queue[2].num}}桌</view>
+          <view class="td">
+            <image class="state_icon" id="3" bindtap="reduce" src="../../assets/images/接客.png" />
+          </view>
+        </view>
+        <view class="tr bg-g" wx:if="{{big_thres == -1}}">
+          <view class="td">大桌--人</view>
+          <view class="td">--桌</view>
+          <view class="td">
+            <image class="state_icon" id="3" bindtap="reduce" src="../../assets/images/接客.png" />
+          </view>
+        </view>
+      </view>
+      <view class="queue_state">
+        <!-- 提升餐桌號 -->
+          <modal hidden="{{!show_alert}}" title="就餐桌號" confirm-text="确认" cancel-text="取消" bindcancel="onCancel" bindconfirm="onConfirm" no-cancel="{{nocancel}}">
+          <text>{{show_number}}就餐</text>
+          </modal>
+      </view> 
+    </view>
+  </view>
+</view>
