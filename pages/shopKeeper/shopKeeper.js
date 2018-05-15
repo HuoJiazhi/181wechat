@@ -39,7 +39,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/queue/get_queue_thres/1712266646",
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid2")
       },
       success: response => {
         console.log("获取申请:", response);
@@ -62,7 +62,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/queue/queue_num/1712266646",
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid2")
       },
       success: response => {
         console.log("获取申请:", response.data);
@@ -130,21 +130,44 @@ Page({
 
   },
 
-  add: function () {
-
-  },
-
-  reduce: function (event) {
+  add: function (event) {
     wx.request({
-      url: "http://42.121.193.25:8888/181mall/queue/poll_queue_num/1712266646?queue_type=" + event.currentTarget.id,
+      url: "http://42.121.193.25:8888/181mall/queue/get_queue_num/1712266646?queue_type=" + event.currentTarget.id,
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid2")
       },
       success: response => {
         console.log("获取申请:", response.data);
         var data = response.data;
+        var list = this.data.queue;
+        list[event.currentTarget.id - 1].num++;
         this.setData({
+          queue: list,
+          show_alert: true,
+          show_number: data.queue_no
+        })
+      },
+      fail: function (error) {
+        console.log("获取申请error:", error);
+      }
+    });
+  },
+
+  reduce: function (event) {
+    wx.request({
+      url: "http://42.121.193.25:8888/181mall/queue/poll_queue_num/" + event.currentTarget.id,
+      method: "GET",
+      header: {
+        'Cookie': wx.getStorageSync("sessionid2")
+      },
+      success: response => {
+        console.log("获取申请:", response.data);
+        var data = response.data;
+        var list = this.data.queue; 
+        list[event.currentTarget.id - 1].num--;
+        this.setData({
+          queue:list,
           show_alert: true,
           show_number: data
         })

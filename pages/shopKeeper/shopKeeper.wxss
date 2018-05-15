@@ -12,11 +12,13 @@
 .state_icon {
   width: 100rpx;
   height: 60rpx;
+  margin-left: 5rpx;
 }
 
 .state_icon_min {
   width: 25rpx;
   height: 25rpx;
+
 }
 
 .td {

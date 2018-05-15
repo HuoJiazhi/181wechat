@@ -11,6 +11,7 @@ Page({
   },
   //事件处理函数
   bindViewTap: function() {
+    if(wx.getStorageSync("sessionid")==""){
     wx.request({
       url: "http://42.121.193.25:8888/181mall/registerlogin",
       method: "POST",
@@ -26,18 +27,25 @@ Page({
         console.log("登录成功:", response.header["Set-Cookie"].split(";")[0].split("=")[1]);
         var JSESSIONID = response.header["Set-Cookie"].split(";")[0].split("=")[1];
         //设置全局sessionId 变量
+        wx.setStorageSync("sessionid", "JSESSIONID=" + JSESSIONID)
         app.globalData.sessionId = "JSESSIONID="+JSESSIONID;
         wx.navigateTo({
-          url: '../shopInfo/shopInfo?cookie=' + JSESSIONID
+          url: '../shopInfo/shopInfo'
         })
       },
       fail: function (error) {
         console.log("登录error:", error);
       }
     });
+    }else{
+      wx.navigateTo({
+        url: '../shopInfo/shopInfo'
+      })
+    }
   },
   //事件处理函数
   bindViewTap2: function () {
+    if (wx.getStorageSync("sessionid2") == "") {
     wx.request({
       url: "http://42.121.193.25:8888/181mall/registerlogin",
       method: "POST",
@@ -45,15 +53,16 @@ Page({
         "content-type": "application/x-www-form-urlencoded"
       },
       data: {
-        "phone": "13541098917",
+        "phone": "15528326290",
         "msg_identification_code": "1234",
-        "role": "1"
+        "role": "2"
       },
       success: response => {
         console.log("登录成功:", response.header["Set-Cookie"].split(";")[0].split("=")[1]);
         var JSESSIONID = response.header["Set-Cookie"].split(";")[0].split("=")[1];
         //设置全局sessionId 变量
         app.globalData.sessionId = "JSESSIONID=" + JSESSIONID;
+        wx.setStorageSync("sessionid2", "JSESSIONID=" + JSESSIONID)
         wx.navigateTo({
           url: '../shopKeeper/shopKeeper?cookie=' + JSESSIONID
         })
@@ -62,6 +71,11 @@ Page({
         console.log("登录error:", error);
       }
     });
+    }else{
+      wx.navigateTo({
+        url: '../shopKeeper/shopKeeper'
+      })
+    }
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

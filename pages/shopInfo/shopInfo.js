@@ -42,10 +42,6 @@ Page({
   onLoad: function (options) {
     //自动登录
     console.log(options)
-    this.setData({
-      JSESSION: options.cookie,
-      JSESSIONID: "JSESSIONID=" + options.cookie
-    })
   },
 
   // Do something when page ready.
@@ -59,7 +55,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/shop/info?shop_account_id=1712266646",
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取商家:", response.data);
@@ -94,7 +90,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/queue/is_open/1712266646",
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取申请:", response);
@@ -126,9 +122,8 @@ Page({
     // 获取每个桌型规定人数
     wx.request({
       url: "http://42.121.193.25:8888/181mall/queue/get_queue_thres/1712266646",
-      method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取申请:", response);
@@ -148,7 +143,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/queue/queue_num/1712266646",
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取申请:", response.data);
@@ -173,7 +168,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/queue/list",
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log(response)
@@ -244,10 +239,10 @@ Page({
         return
       }
       wx.request({
-        url: "http://42.121.193.25:8888/181mall/queue/get_queue_num/1712266646?queue_type=1",
+        url: "http://42.121.193.25:8888/181mall/queue/get_queue_num/1712266646?queue_type=" + queue_type,
         method: "GET",
         header: {
-          'Cookie': app.globalData.sessionId
+          'Cookie': wx.getStorageSync("sessionid")
         },
         success: response => {
           console.log("排队:", response.data);

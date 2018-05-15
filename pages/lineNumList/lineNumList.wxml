@@ -1,6 +1,6 @@
 <view id="line_num_list">
   <view class="myQueuePage">
-    <block wx:for="{{myQueueList}}">
+    <block wx:for="{{myQueueList}}" wx:key="queue_no">
       <view class="queueItem" data-index="{{index}}" bindtap="check_waiting_no">
         <view class="queueNum" style="float:left;width:30%;">
           <span class="queueOneNum">{{item.queue_no}}</span>

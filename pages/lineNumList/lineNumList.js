@@ -1,5 +1,6 @@
 // pages/lineNumList/lineNumList.js
 const app = getApp()
+var Util = require('../../utils/util');
 Page({
 
   /**
@@ -32,7 +33,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/queue/list",
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取申请:", response.data);
@@ -73,20 +74,17 @@ Page({
 
   // 获取商家店名
   _getShop: function () {
-    var formData = new FormData();
     var arr = JSON.stringify(this.data.getShopList);
-    formData.append("shop_account_list", arr)
-    console.log(formData);
+    console.log(arr);
+    var data = Util.json2Form({ shop_account_list:arr});
     wx.request({
       url: "http://42.121.193.25:8888/181mall/logo/list",
       method: "POST",
       header: {
-        'Cookie': app.globalData.sessionId,
+        'Cookie': wx.getStorageSync("sessionid"),
         "content-type": "application/x-www-form-urlencoded"
       },
-      data: {
-        "shop_account_list": arr
-      },
+      data: data,
       success: response => {
         console.log("获取申请shop:", response.data);
         var data = response.data;
@@ -108,7 +106,7 @@ Page({
       url: 'http://42.121.193.25:8888/181mall/queue/no_status?shop_account_id=' + shop_account_id + '&queue_no=' + Queue_no,
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取申请:", response.data)

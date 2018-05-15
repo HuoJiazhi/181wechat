@@ -48,7 +48,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/get_dish_type_list/" + this.data.shop_account_id,
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取申请:", response.data);
@@ -68,7 +68,7 @@ Page({
       url: "http://42.121.193.25:8888/181mall/select_dish_list?shop_account_id=" + this.data.shop_account_id,
       method: "GET",
       header: {
-        'Cookie': app.globalData.sessionId
+        'Cookie': wx.getStorageSync("sessionid")
       },
       success: response => {
         console.log("获取申请:", response.data);
@@ -89,7 +89,7 @@ Page({
         url: "http://42.121.193.25:8888/181mall/shop/info?shop_account_id=" + this.data.shop_account_id,
         method: "GET",
         header: {
-          'Cookie': app.globalData.sessionId
+          'Cookie': wx.getStorageSync("sessionid")
         },
         success: response => {
           console.log("获取申请:", response.data);
